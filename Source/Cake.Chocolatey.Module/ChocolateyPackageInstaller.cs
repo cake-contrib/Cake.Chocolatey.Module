@@ -15,8 +15,9 @@ namespace Cake.Chocolatey.Module
     public sealed class ChocolateyPackageInstaller : IPackageInstaller
     {
         private readonly ICakeEnvironment _environment;
-        private readonly ICakeLog _log;
         private readonly IProcessRunner _processRunner;
+        private readonly ICakeLog _log;
+        private readonly IChocolateyContentResolver _contentResolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChocolateyPackageInstaller"/> class.
@@ -24,7 +25,7 @@ namespace Cake.Chocolatey.Module
         /// <param name="environment">The environment.</param>
         /// <param name="processRunner">The process runner.</param>
         /// <param name="log">The log.</param>
-        public ChocolateyPackageInstaller(ICakeEnvironment environment, IProcessRunner processRunner, ICakeLog log)
+        public ChocolateyPackageInstaller(ICakeEnvironment environment, IProcessRunner processRunner, ICakeLog log, IChocolateyContentResolver contentResolver)
         {
             if (environment == null)
             {
@@ -41,9 +42,15 @@ namespace Cake.Chocolatey.Module
                 throw new ArgumentNullException(nameof(log));
             }
 
+            if (contentResolver == null)
+            {
+                throw new ArgumentNullException(nameof(contentResolver));
+            }
+
             _environment = environment;
             _processRunner = processRunner;
             _log = log;
+            _contentResolver = contentResolver;
         }
 
         /// <summary>
@@ -102,7 +109,15 @@ namespace Cake.Chocolatey.Module
                 _log.Verbose(Verbosity.Diagnostic, "Output:\r\n{0}", output);
             }
 
-            return new List<IFile>();
+            var result = _contentResolver.GetFiles(package, type);
+            if (result.Count != 0)
+            {
+                return result;
+            }
+
+            // TODO: maybe some warnings here
+
+            return result;
         }
 
         private static ProcessArgumentBuilder GetArguments(

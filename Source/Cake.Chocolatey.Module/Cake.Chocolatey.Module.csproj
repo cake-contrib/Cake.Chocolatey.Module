@@ -44,8 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChocolateyContentResolver.cs" />
     <Compile Include="ChocolateyModule.cs" />
     <Compile Include="ChocolateyPackageInstaller.cs" />
+    <Compile Include="IChocolateyContentResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

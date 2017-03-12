@@ -22,6 +22,7 @@ namespace Cake.Chocolatey.Module
             }
 
             registrar.RegisterType<ChocolateyPackageInstaller>().As<IPackageInstaller>().Singleton();
+            registrar.RegisterType<ChocolateyContentResolver>().As<IChocolateyContentResolver>().Singleton();
         }
     }
 }
