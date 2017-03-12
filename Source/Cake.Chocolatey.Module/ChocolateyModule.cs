@@ -1,6 +1,6 @@
-﻿using Cake.Core.Composition;
+﻿using System;
+using Cake.Core.Composition;
 using Cake.Core.Packaging;
-using System;
 
 namespace Cake.Chocolatey.Module
 {

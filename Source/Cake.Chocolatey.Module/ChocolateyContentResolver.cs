@@ -1,18 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Cake.Core;
 using Cake.Core.IO;
 using Cake.Core.Packaging;
-using Cake.Core;
-using System.Linq;
 
 namespace Cake.Chocolatey.Module
 {
+    /// <summary>
+    /// Locates and lists contents of Chocolatey Packages.
+    /// </summary>
     public class ChocolateyContentResolver : IChocolateyContentResolver
     {
         private readonly IFileSystem _fileSystem;
         private readonly ICakeEnvironment _environment;
         private readonly IGlobber _globber;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChocolateyContentResolver"/> class.
+        /// </summary>
+        /// <param name="fileSystem">The file system.</param>
+        /// <param name="environment">The environment.</param>
+        /// <param name="globber">The Globber.</param>
         public ChocolateyContentResolver(
             IFileSystem fileSystem,
             ICakeEnvironment environment,
@@ -23,6 +32,12 @@ namespace Cake.Chocolatey.Module
             _globber = globber;
         }
 
+        /// <summary>
+        /// Collects all the files for the given Chocolatey Package.
+        /// </summary>
+        /// <param name="package">The Chocolatey Package.</param>
+        /// <param name="type">The type of Chocolatey Package.</param>
+        /// <returns>All the files for the Package.</returns>
         public IReadOnlyCollection<IFile> GetFiles(PackageReference package, PackageType type)
         {
             if (type == PackageType.Addin)

@@ -20,6 +20,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Cake.Chocolatey.Module.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Debug\Cake.Chocolatey.Module.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +30,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Cake.Chocolatey.Module.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Release\Cake.Chocolatey.Module.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cake.Core, Version=0.18.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -51,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Cake.Chocolatey.Module.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

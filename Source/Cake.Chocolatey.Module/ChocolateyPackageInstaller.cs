@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Cake.Core.IO;
-using Cake.Core.Packaging;
+using System.Linq;
 using Cake.Core;
 using Cake.Core.Diagnostics;
-using Cake.Core.Configuration;
-using System.Linq;
+using Cake.Core.IO;
+using Cake.Core.Packaging;
 
 namespace Cake.Chocolatey.Module
 {
@@ -25,6 +24,7 @@ namespace Cake.Chocolatey.Module
         /// <param name="environment">The environment.</param>
         /// <param name="processRunner">The process runner.</param>
         /// <param name="log">The log.</param>
+        /// <param name="contentResolver">The Chocolatey Package Content Resolver.</param>
         public ChocolateyPackageInstaller(ICakeEnvironment environment, IProcessRunner processRunner, ICakeLog log, IChocolateyContentResolver contentResolver)
         {
             if (environment == null)
@@ -92,12 +92,9 @@ namespace Cake.Chocolatey.Module
 
             // Install the package.
             _log.Debug("Installing Chocolatey package {0}...", package.Package);
-            var process = _processRunner.Start("choco", new ProcessSettings
-            {
-                Arguments = GetArguments(package, path),
-                RedirectStandardOutput = true,
-                Silent = _log.Verbosity < Verbosity.Diagnostic
-            });
+            var process = _processRunner.Start(
+                "choco",
+                new ProcessSettings { Arguments = GetArguments(package, path), RedirectStandardOutput = true, Silent = _log.Verbosity < Verbosity.Diagnostic });
 
             process.WaitForExit();
 
@@ -116,7 +113,6 @@ namespace Cake.Chocolatey.Module
             }
 
             // TODO: maybe some warnings here
-
             return result;
         }
 

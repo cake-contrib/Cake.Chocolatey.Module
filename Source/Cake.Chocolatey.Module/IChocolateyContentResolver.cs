@@ -1,6 +1,6 @@
-﻿using Cake.Core.IO;
+﻿using System.Collections.Generic;
+using Cake.Core.IO;
 using Cake.Core.Packaging;
-using System.Collections.Generic;
 
 namespace Cake.Chocolatey.Module
 {
