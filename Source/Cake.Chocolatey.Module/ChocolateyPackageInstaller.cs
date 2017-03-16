@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Cake.Core;
+using Cake.Core.Configuration;
 using Cake.Core.Diagnostics;
 using Cake.Core.IO;
 using Cake.Core.Packaging;
@@ -17,6 +18,7 @@ namespace Cake.Chocolatey.Module
         private readonly IProcessRunner _processRunner;
         private readonly ICakeLog _log;
         private readonly IChocolateyContentResolver _contentResolver;
+        private readonly ICakeConfiguration _config;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChocolateyPackageInstaller"/> class.
@@ -25,7 +27,8 @@ namespace Cake.Chocolatey.Module
         /// <param name="processRunner">The process runner.</param>
         /// <param name="log">The log.</param>
         /// <param name="contentResolver">The Chocolatey Package Content Resolver.</param>
-        public ChocolateyPackageInstaller(ICakeEnvironment environment, IProcessRunner processRunner, ICakeLog log, IChocolateyContentResolver contentResolver)
+        /// <param name="config">the configuration</param>
+        public ChocolateyPackageInstaller(ICakeEnvironment environment, IProcessRunner processRunner, ICakeLog log, IChocolateyContentResolver contentResolver, ICakeConfiguration config)
         {
             if (environment == null)
             {
@@ -51,6 +54,7 @@ namespace Cake.Chocolatey.Module
             _processRunner = processRunner;
             _log = log;
             _contentResolver = contentResolver;
+            _config = config;
         }
 
         /// <summary>
@@ -94,7 +98,7 @@ namespace Cake.Chocolatey.Module
             _log.Debug("Installing Chocolatey package {0}...", package.Package);
             var process = _processRunner.Start(
                 "choco",
-                new ProcessSettings { Arguments = GetArguments(package, path), RedirectStandardOutput = true, Silent = _log.Verbosity < Verbosity.Diagnostic });
+                new ProcessSettings { Arguments = GetArguments(package, path, _config), RedirectStandardOutput = true, Silent = _log.Verbosity < Verbosity.Diagnostic });
 
             process.WaitForExit();
 
@@ -118,7 +122,8 @@ namespace Cake.Chocolatey.Module
 
         private static ProcessArgumentBuilder GetArguments(
             PackageReference definition,
-            DirectoryPath installationRoot)
+            DirectoryPath installationRoot,
+            ICakeConfiguration config)
         {
             var arguments = new ProcessArgumentBuilder();
 
@@ -132,6 +137,15 @@ namespace Cake.Chocolatey.Module
             {
                 arguments.Append("--source");
                 arguments.AppendQuoted(definition.Address.AbsoluteUri);
+            }
+            else
+            {
+                var chocolateySource = config.GetValue(Constants.Chocolatey.Source) ?? "https://chocolatey.org/api/v2/";
+                if (!string.IsNullOrWhiteSpace(chocolateySource))
+                {
+                    arguments.Append("--source");
+                    arguments.AppendQuoted(chocolateySource);
+                }
             }
 
             // Version
