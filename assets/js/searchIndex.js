@@ -34,14 +34,6 @@ var searchModule = function() {
 
     a({
         id:0,
-        title:"ChocolateyModule",
-        content:"ChocolateyModule",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:1,
         title:"ChocolateyContentResolver",
         content:"ChocolateyContentResolver",
         description:'',
@@ -49,7 +41,7 @@ var searchModule = function() {
     });
 
     a({
-        id:2,
+        id:1,
         title:"IChocolateyContentResolver",
         content:"IChocolateyContentResolver",
         description:'',
@@ -57,17 +49,19 @@ var searchModule = function() {
     });
 
     a({
-        id:3,
+        id:2,
         title:"ChocolateyPackageInstaller",
         content:"ChocolateyPackageInstaller",
         description:'',
         tags:''
     });
 
-    y({
-        url:'/Cake.Chocolatey.Module/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyModule',
+    a({
+        id:3,
         title:"ChocolateyModule",
-        description:""
+        content:"ChocolateyModule",
+        description:'',
+        tags:''
     });
 
     y({
@@ -85,6 +79,12 @@ var searchModule = function() {
     y({
         url:'/Cake.Chocolatey.Module/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyPackageInstaller',
         title:"ChocolateyPackageInstaller",
+        description:""
+    });
+
+    y({
+        url:'/Cake.Chocolatey.Module/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyModule',
+        title:"ChocolateyModule",
         description:""
     });
 
