@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<link rel="self" href="http://cake-contrib.github.io/Cake.Chocolatey.Module" />
+	<id>http://cake-contrib.github.io/Cake.Chocolatey.Module</id>
+	<title />
+	<rights>2017</rights>
+	<updated>2017-03-19T00:06:41Z</updated>
+	<entry>
+		<author>
+			<name>gep13</name>
+		</author>
+		<link href="http://cake-contrib.github.io/Cake.Chocolatey.Module/blog/new-release-0.1.0" />
+		<id>http://cake-contrib.github.io/Cake.Chocolatey.Module/blog/new-release-0.1.0</id>
+		<title>New Release - 0.1.0</title>
+		<updated>2017-03-18T00:00:00Z</updated>
+		<summary>&lt;p&gt;We are very pleased to announce this initial release of the Cake.Chocolatey.Module.&lt;/p&gt;</summary>
+	</entry>
+</feed>
