@@ -5,22 +5,22 @@
 		<link>http://cake-contrib.github.io/Cake.Chocolatey.Module</link>
 		<description />
 		<copyright>2017</copyright>
-		<pubDate>Sun, 19 Mar 2017 00:37:22 GMT</pubDate>
-		<lastBuildDate>Sun, 19 Mar 2017 00:37:22 GMT</lastBuildDate>
-		<item>
-			<title>New Release - 0.1.0</title>
-			<link>http://cake-contrib.github.io/Cake.Chocolatey.Module/blog/new-release-0.1.0</link>
-			<description>&lt;p&gt;We are very pleased to announce this initial release of the Cake.Chocolatey.Module.&lt;/p&gt;</description>
-			<author>gep13</author>
-			<guid>http://cake-contrib.github.io/Cake.Chocolatey.Module/blog/new-release-0.1.0</guid>
-			<pubDate>Sat, 18 Mar 2017 00:00:00 GMT</pubDate>
-		</item>
+		<pubDate>Sat, 15 Apr 2017 12:51:13 GMT</pubDate>
+		<lastBuildDate>Sat, 15 Apr 2017 12:51:13 GMT</lastBuildDate>
 		<item>
 			<title>New Release - 0.1.1</title>
 			<link>http://cake-contrib.github.io/Cake.Chocolatey.Module/blog/new-release-0.1.1</link>
 			<description>&lt;p&gt;Looks like I missed an important step when committing everything for what I thought was going to be the 0.1.0 release!  I forgot to include the Cake.Chocolatey.Module.nuspec file, which is used to package up the NuGet package, and which is ultimately used as a trigger for whether a deployment to nuget.org is actually required.&lt;/p&gt;</description>
 			<author>gep13</author>
 			<guid>http://cake-contrib.github.io/Cake.Chocolatey.Module/blog/new-release-0.1.1</guid>
+			<pubDate>Sat, 18 Mar 2017 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>New Release - 0.1.0</title>
+			<link>http://cake-contrib.github.io/Cake.Chocolatey.Module/blog/new-release-0.1.0</link>
+			<description>&lt;p&gt;We are very pleased to announce this initial release of the Cake.Chocolatey.Module.&lt;/p&gt;</description>
+			<author>gep13</author>
+			<guid>http://cake-contrib.github.io/Cake.Chocolatey.Module/blog/new-release-0.1.0</guid>
 			<pubDate>Sat, 18 Mar 2017 00:00:00 GMT</pubDate>
 		</item>
 	</channel>
