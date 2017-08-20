@@ -9,6 +9,7 @@
     <summary>Cake Module that extends Cake with ability to install tools using Chocolatey.</summary>
     <licenseUrl>https://github.com/cake-contrib/Cake.Chocolatey.Module/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/cake-contrib/Cake.Chocolatey.Module/</projectUrl>
+    <iconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <copyright>Copyright (c) Cake Contributions 2016 - Present</copyright>
     <tags>Cake, Script, Build, Chocolatey, Module</tags>
