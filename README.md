@@ -2,7 +2,7 @@
 
 Cake.Chocolatey.Module is a Module for Cake, which extends it with a new IPackageInstaller for installing tools using the Chocolatey Application Package Manager
 
-[![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/cake-contrib/Cake.Chocolatey.Module/blob/feature/build/LICENSE)
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://cake-contrib.mit-license.org)
 
 ## Information
 
