@@ -34,22 +34,6 @@ var searchModule = function() {
 
     a({
         id:0,
-        title:"IChocolateyContentResolver",
-        content:"IChocolateyContentResolver",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:1,
-        title:"ChocolateyContentResolver",
-        content:"ChocolateyContentResolver",
-        description:'',
-        tags:''
-    });
-
-    a({
-        id:2,
         title:"ChocolateyPackageInstaller",
         content:"ChocolateyPackageInstaller",
         description:'',
@@ -57,23 +41,27 @@ var searchModule = function() {
     });
 
     a({
-        id:3,
+        id:1,
         title:"ChocolateyModule",
         content:"ChocolateyModule",
         description:'',
         tags:''
     });
 
-    y({
-        url:'/Cake.Chocolatey.Module/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/IChocolateyContentResolver',
+    a({
+        id:2,
         title:"IChocolateyContentResolver",
-        description:""
+        content:"IChocolateyContentResolver",
+        description:'',
+        tags:''
     });
 
-    y({
-        url:'/Cake.Chocolatey.Module/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyContentResolver',
+    a({
+        id:3,
         title:"ChocolateyContentResolver",
-        description:""
+        content:"ChocolateyContentResolver",
+        description:'',
+        tags:''
     });
 
     y({
@@ -85,6 +73,18 @@ var searchModule = function() {
     y({
         url:'/Cake.Chocolatey.Module/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyModule',
         title:"ChocolateyModule",
+        description:""
+    });
+
+    y({
+        url:'/Cake.Chocolatey.Module/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/IChocolateyContentResolver',
+        title:"IChocolateyContentResolver",
+        description:""
+    });
+
+    y({
+        url:'/Cake.Chocolatey.Module/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyContentResolver',
+        title:"ChocolateyContentResolver",
         description:""
     });
 
