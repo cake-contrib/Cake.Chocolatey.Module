@@ -15,8 +15,8 @@
     <tags>Cake, Script, Build, Chocolatey, Module</tags>
   </metadata>
   <files>
-    <file src="Cake.Chocolatey.Module.dll" target="lib\net45" />
-    <file src="Cake.Chocolatey.Module.pdb" target="lib\net45" />
-    <file src="Cake.Chocolatey.Module.xml" target="lib\net45" />
+    <file src="Cake.Chocolatey.Module.dll" target="lib\net46" />
+    <file src="Cake.Chocolatey.Module.pdb" target="lib\net46" />
+    <file src="Cake.Chocolatey.Module.xml" target="lib\net46" />
   </files>
 </package>
