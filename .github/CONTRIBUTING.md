@@ -15,7 +15,7 @@ it would be.
 
 # Making Changes
 * From your fork of the repository, create a topic branch where work on your change will take place.
-* To quickly create a topic branch based on master; `git checkout -b my_contribution master`. Please avoid working directly on the `master` branch.
+* To quickly create a topic branch based on develop; `git checkout -b my_contribution develop`. Please avoid working directly on the `develop` or `master` branch.
 * Make commits of logical units.
 * Check for unnecessary whitespace with `git diff --check` before committing.
 * Please follow the prevailing code conventions in the repository. Differences in style make the code harder to understand for everyone.
@@ -40,7 +40,7 @@ are highly apprecaited.
 # Submitting Changes
 * Push your changes to a topic branch in your fork of the repository.
 * Submit a pull request to the main repository.
-* Once the pull request has been reviewed and accepted, it will be merged with the master branch.
+* Once the pull request has been reviewed and accepted, it will be merged with the develop branch.
 * Celebrate
 
 # Additional Resources
