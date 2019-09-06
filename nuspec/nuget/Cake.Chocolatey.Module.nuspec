@@ -8,7 +8,7 @@
     <description>Cake Chocolatey Module.</description>
     <summary>Cake Module that extends Cake with ability to install tools using Chocolatey.</summary>
     <license type="expression">MIT</license>
-    <repository type="git" url="https://github.com/cake-contrib/Cake.Chocolatey.Module"/>
+    <repository type="git" url="https://github.com/cake-contrib/Cake.Chocolatey.Module.git"/>
     <projectUrl>https://github.com/cake-contrib/Cake.Chocolatey.Module/</projectUrl>
     <iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
