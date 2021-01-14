@@ -1,28 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-	<link rel="self" href="http://cake-contrib.github.io/Cake.Chocolatey.Module" />
 	<id>http://cake-contrib.github.io/Cake.Chocolatey.Module</id>
 	<title>Cake.Chocolatey.Module</title>
-	<rights>2017</rights>
-	<updated>2017-08-20T21:40:08Z</updated>
-	<entry>
-		<author>
-			<name>gep13</name>
-		</author>
-		<link href="http://cake-contrib.github.io/Cake.Chocolatey.Module/blog/new-release-0.1.0" />
-		<id>http://cake-contrib.github.io/Cake.Chocolatey.Module/blog/new-release-0.1.0</id>
-		<title>New Release - 0.1.0</title>
-		<updated>2017-03-18T00:00:00Z</updated>
-		<summary>&lt;p&gt;We are very pleased to announce this initial release of the Cake.Chocolatey.Module.&lt;/p&gt;</summary>
-	</entry>
-	<entry>
-		<author>
-			<name>gep13</name>
-		</author>
-		<link href="http://cake-contrib.github.io/Cake.Chocolatey.Module/blog/new-release-0.1.1" />
-		<id>http://cake-contrib.github.io/Cake.Chocolatey.Module/blog/new-release-0.1.1</id>
-		<title>New Release - 0.1.1</title>
-		<updated>2017-03-18T00:00:00Z</updated>
-		<summary>&lt;p&gt;Looks like I missed an important step when committing everything for what I thought was going to be the 0.1.0 release!  I forgot to include the Cake.Chocolatey.Module.nuspec file, which is used to package up the NuGet package, and which is ultimately used as a trigger for whether a deployment to nuget.org is actually required.&lt;/p&gt;</summary>
-	</entry>
+	<link rel="self" href="http://cake-contrib.github.io/Cake.Chocolatey.Module" />
+	<rights>2021</rights>
+	<updated>2021-01-14T20:05:33Z</updated>
 </feed>

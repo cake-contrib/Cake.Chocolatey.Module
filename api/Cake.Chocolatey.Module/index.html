@@ -7,7 +7,6 @@
         <link rel="shortcut icon" href="/Cake.Chocolatey.Module/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Cake.Chocolatey.Module/assets/img/favicon.ico" type="image/x-icon">
         <title>Cake.Chocolatey.Module - API - Cake.Chocolatey.Module Namespace</title>
-        <link href="/Cake.Chocolatey.Module/assets/css/mermaid.css" rel="stylesheet">
         <link href="/Cake.Chocolatey.Module/assets/css/highlight.css" rel="stylesheet">
         <link href="/Cake.Chocolatey.Module/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
         <link href="/Cake.Chocolatey.Module/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
@@ -22,6 +21,7 @@
         <script src="/Cake.Chocolatey.Module/assets/js/jquery.slimscroll.min.js"></script>
         <script src="/Cake.Chocolatey.Module/assets/js/jquery.sticky-kit.min.js"></script>
         <script src="/Cake.Chocolatey.Module/assets/js/mermaid.min.js"></script>
+        <script src="/Cake.Chocolatey.Module/assets/js/svg-pan-zoom.min.js"></script>
         <!--[if lt IE 9]>
         <script src="/Cake.Chocolatey.Module/assets/js/html5shiv.min.js"></script>
         <script src="/Cake.Chocolatey.Module/assets/js/respond.min.js"></script>
@@ -57,7 +57,7 @@
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">                            
                                     <li><a href="/Cake.Chocolatey.Module/docs">Documentation</a></li>
-        <li><a href="/Cake.Chocolatey.Module/blog">Blog</a></li>
+        <li><a href="/Cake.Chocolatey.Module/tasks">Tasks</a></li>
         <li class="active"><a href="/Cake.Chocolatey.Module/api">API</a></li>
  
                         </ul>       
@@ -72,13 +72,14 @@
             <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
-	<div id="infobar-headings"><h6>On This Page</h6><p><a href="#InterfaceTypes">Interface Types</a></p>
-<p><a href="#ClassTypes">Class Types</a></p>
+	<div id="infobar-headings"><h6>On This Page</h6><p><a href="#ClassTypes">Class Types</a></p>
+<p><a href="#InterfaceTypes">Interface Types</a></p>
 <hr class="infobar-hidden">
 </div>
 
                 </section>
-                <section class="sidebar">                    
+                <section class="sidebar">    
+                                     
                     	
 	    <script src="/Cake.Chocolatey.Module/assets/js/lunr.min.js"></script>
     <script src="/Cake.Chocolatey.Module/assets/js/searchIndex.js"></script>
@@ -106,7 +107,7 @@
             } else {					
                 for(var i = 0; i < results.length; ++i){
                     var res = results[i];
-                    listHtml += "<li><a href='" + res.url + "'>" + res.title + "</a></li>";
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
                 }				
             }
             listHtml += "</ul>";				
@@ -118,6 +119,13 @@
                 runSearch($("#search").val());
             });
         });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
     </script>
 	
     <hr>
@@ -137,6 +145,7 @@
 </ul></li></ul></li>      
 
                     </ul>
+                            
                 </section>                
             </aside>
             
@@ -154,27 +163,7 @@
 	
 	
 
-			<h1 id="InterfaceTypes">Interface Types</h1>
-			<div class="box">
-				<div class="box-body no-padding table-responsive">
-					<table class="table table-striped table-hover two-cols">
-						<thead>
-							<tr>
-								<th>Interface</th>
-									<th>Summary</th>
-							</tr>
-						</thead>
-							<tbody><tr>
-								<td><a href="/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/IChocolateyContentResolver">I<wbr>Chocolatey<wbr>Content<wbr>Resolver</a></td>
-									<td>
-    Represents a file locator for Chocolatey packages that returns relevant
-    files given the resource type.
-    </td>
-							</tr>
-					</tbody></table>
-				</div>
-			</div>
-		
+
 			<h1 id="ClassTypes">Class Types</h1>
 			<div class="box">
 				<div class="box-body no-padding table-responsive">
@@ -208,6 +197,29 @@
 				</div>
 			</div>
 		
+
+			<h1 id="InterfaceTypes">Interface Types</h1>
+			<div class="box">
+				<div class="box-body no-padding table-responsive">
+					<table class="table table-striped table-hover two-cols">
+						<thead>
+							<tr>
+								<th>Interface</th>
+									<th>Summary</th>
+							</tr>
+						</thead>
+							<tbody><tr>
+								<td><a href="/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/IChocolateyContentResolver">I<wbr>Chocolatey<wbr>Content<wbr>Resolver</a></td>
+									<td>
+    Represents a file locator for Chocolatey packages that returns relevant
+    files given the resource type.
+    </td>
+							</tr>
+					</tbody></table>
+				</div>
+			</div>
+		
+
 	
 </section>
                 
@@ -231,22 +243,53 @@
                 $(document.body).removeClass('sidebar-open');
             });
             
-            $(document).load(function() {
+            $(document).ready(function() {
                 mermaid.initialize(
                 {
                     flowchart:
                     {
-                        htmlLabels: false,
-                        useMaxWidth:false
-                    }
-                });  
-                mermaid.init(undefined, ".mermaid")
-                $('svg').addClass('img-responsive');
+                        useMaxWidth: false
+                    },
+					startOnLoad: false,
+					cloneCssStyles: false
+                });     
+                mermaid.init(undefined, ".mermaid");
+
+                // Remove the max-width setting that Mermaid sets
+                var mermaidSvg = $('.mermaid svg');
+                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.css('max-width', '');
+
+                // Make it scrollable
+				var target = document.querySelector(".mermaid svg");
+				if(target !== null)
+				{
+					var panZoom = window.panZoom = svgPanZoom(target, {
+						zoomEnabled: true,
+						controlIconsEnabled: true,
+						fit: true,
+						center: true,
+                        maxZoom: 20,
+                        zoomScaleSensitivity: 0.6
+					});			                          
+
+                    // Do the reset once right away to fit the diagram
+                    panZoom.resize();
+                    panZoom.fit();
+                    panZoom.center();
+                    
+                    $(window).resize(function(){
+                        panZoom.resize();
+                        panZoom.fit();
+                        panZoom.center();
+                    });
+				}
                 
                 $('pre code').each(function(i, block) {
                     hljs.highlightBlock(block);
                 });  
             });
+
             hljs.initHighlightingOnLoad();
 
             // Back to top

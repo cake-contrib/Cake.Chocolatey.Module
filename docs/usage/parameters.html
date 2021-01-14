@@ -7,7 +7,6 @@
         <link rel="shortcut icon" href="/Cake.Chocolatey.Module/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Cake.Chocolatey.Module/assets/img/favicon.ico" type="image/x-icon">
         <title>Cake.Chocolatey.Module - Parameters</title>
-        <link href="/Cake.Chocolatey.Module/assets/css/mermaid.css" rel="stylesheet">
         <link href="/Cake.Chocolatey.Module/assets/css/highlight.css" rel="stylesheet">
         <link href="/Cake.Chocolatey.Module/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
         <link href="/Cake.Chocolatey.Module/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
@@ -22,6 +21,7 @@
         <script src="/Cake.Chocolatey.Module/assets/js/jquery.slimscroll.min.js"></script>
         <script src="/Cake.Chocolatey.Module/assets/js/jquery.sticky-kit.min.js"></script>
         <script src="/Cake.Chocolatey.Module/assets/js/mermaid.min.js"></script>
+        <script src="/Cake.Chocolatey.Module/assets/js/svg-pan-zoom.min.js"></script>
         <!--[if lt IE 9]>
         <script src="/Cake.Chocolatey.Module/assets/js/html5shiv.min.js"></script>
         <script src="/Cake.Chocolatey.Module/assets/js/respond.min.js"></script>
@@ -57,7 +57,7 @@
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">                            
                                     <li class="active"><a href="/Cake.Chocolatey.Module/docs">Documentation</a></li>
-        <li><a href="/Cake.Chocolatey.Module/blog">Blog</a></li>
+        <li><a href="/Cake.Chocolatey.Module/tasks">Tasks</a></li>
         <li><a href="/Cake.Chocolatey.Module/api">API</a></li>
  
                         </ul>       
@@ -81,22 +81,26 @@
 </div>
 
                 </section>
-                <section class="sidebar">                    
+                <section class="sidebar">    
+                                     
                     
 
                     <ul class="sidebar-menu">
                         
+
                 <li class="treeview">
                     <a href="/Cake.Chocolatey.Module/docs/installation">Installation</a> <a href="#" class="expand"></a>
                     <ul class="treeview-menu">
-                                        <li><a href="/Cake.Chocolatey.Module/docs/installation/Setup">Setup</a></li>
+                        
+                <li><a href="/Cake.Chocolatey.Module/docs/installation/Setup">Setup</a></li>
 
                     </ul>
                 </li>
                 <li class="treeview active">
                     <a href="/Cake.Chocolatey.Module/docs/usage">Usage</a> <a href="#" class="expand"></a>
                     <ul class="treeview-menu">
-                                        <li><a href="/Cake.Chocolatey.Module/docs/usage/configuration">Configuration</a></li>
+                        
+                <li><a href="/Cake.Chocolatey.Module/docs/usage/configuration">Configuration</a></li>
                 <li><a href="/Cake.Chocolatey.Module/docs/usage/examples">Examples</a></li>
                 <li class="selected"><a href="/Cake.Chocolatey.Module/docs/usage/parameters">Parameters</a></li>
 
@@ -104,6 +108,7 @@
                 </li>
 
                     </ul>
+                            
                 </section>                
             </aside>
             
@@ -113,13 +118,13 @@
 
 
 
-	<section class="content-header">
-		<h1>Parameters</h1>
-	</section>
+		<section class="content-header">
+			<h1>Parameters</h1>
+		</section>
 	<section class="content">
 		<p>The folllowing URI parameters are supported by the Cake.Chocolatey.Module.</p>
 <h1 id="source">Source</h1>
-<p>This is not a named parameter, but it is permitted as per the URI definition.  By default, Chocolatey will attempt to install applications from the Chocolatey Community Feed located at <a href="https://chocolatey.org/api/v2/.">https://chocolatey.org/api/v2/.</a>  If your package is actually hosted on another feed, for example, on a MyGet feed, the installation source can be overridden.</p>
+<p>This is not a named parameter, but it is permitted as per the URI definition.  By default, Chocolatey will attempt to install applications from the Chocolatey Community Feed located at <a href="https://chocolatey.org/api/v2/">https://chocolatey.org/api/v2/</a>.  If your package is actually hosted on another feed, for example, on a MyGet feed, the installation source can be overridden.</p>
 <h2 id="example">Example</h2>
 <pre><code>#tool choco:https://www.myget.org/F/gep13/api/v2?package=gep13.gitConfig
 </code></pre>
@@ -161,22 +166,53 @@
                 $(document.body).removeClass('sidebar-open');
             });
             
-            $(document).load(function() {
+            $(document).ready(function() {
                 mermaid.initialize(
                 {
                     flowchart:
                     {
-                        htmlLabels: false,
-                        useMaxWidth:false
-                    }
-                });  
-                mermaid.init(undefined, ".mermaid")
-                $('svg').addClass('img-responsive');
+                        useMaxWidth: false
+                    },
+					startOnLoad: false,
+					cloneCssStyles: false
+                });     
+                mermaid.init(undefined, ".mermaid");
+
+                // Remove the max-width setting that Mermaid sets
+                var mermaidSvg = $('.mermaid svg');
+                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.css('max-width', '');
+
+                // Make it scrollable
+				var target = document.querySelector(".mermaid svg");
+				if(target !== null)
+				{
+					var panZoom = window.panZoom = svgPanZoom(target, {
+						zoomEnabled: true,
+						controlIconsEnabled: true,
+						fit: true,
+						center: true,
+                        maxZoom: 20,
+                        zoomScaleSensitivity: 0.6
+					});			                          
+
+                    // Do the reset once right away to fit the diagram
+                    panZoom.resize();
+                    panZoom.fit();
+                    panZoom.center();
+                    
+                    $(window).resize(function(){
+                        panZoom.resize();
+                        panZoom.fit();
+                        panZoom.center();
+                    });
+				}
                 
                 $('pre code').each(function(i, block) {
                     hljs.highlightBlock(block);
                 });  
             });
+
             hljs.initHighlightingOnLoad();
 
             // Back to top
