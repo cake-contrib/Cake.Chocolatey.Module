@@ -2,6 +2,14 @@ name: Build
 
 on:
   push:
+    branches:
+      - master
+      - develop
+      - "feature/**"
+      - "release/**"
+      - "hotfix/**"
+    tags:
+      - "*"
     paths-ignore:
       - "README.md"
   pull_request:
@@ -9,21 +17,18 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
+        os: [windows-2022, ubuntu-22.04, macos-12]
 
     env:
       AZURE_PASSWORD: ${{ secrets.AZURE_PASSWORD }}
       AZURE_SOURCE: ${{ secrets.AZURE_SOURCE }}
       AZURE_USER: ${{ secrets.AZURE_USER }}
       GITHUB_PAT: ${{ secrets.GH_TOKEN }}
-      GITTER_ROOM_ID: ${{ secrets.GITTER_ROOM_ID }}
       GPR_PASSWORD: ${{ secrets.GPR_PASSWORD }}
       GPR_SOURCE: ${{ secrets.GPR_SOURCE }}
       GPR_USER: ${{ secrets.GPR_USER }}
-      GITTER_TOKEN: ${{ secrets.GITTER_TOKEN }}
       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
       NUGET_SOURCE: "https://api.nuget.org/v3/index.json"
       TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
@@ -33,37 +38,55 @@ jobs:
       WYAM_ACCESS_TOKEN: ${{ secrets.WYAM_ACCESS_TOKEN }}
       WYAM_DEPLOY_BRANCH: "gh-pages"
       WYAM_DEPLOY_REMOTE: ${{ github.event.repository.html_url }}
+
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Fetch all tags and branches
         run: git fetch --prune --unshallow
 
       - name: Cache Tools
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: tools
-          key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake') }}
+          key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake', '.config/dotnet-tools.json') }}
+
+      # install libgit2-dev on ubuntu, so libgit2sharp works
+      - name: Install libgit-dev
+        if: runner.os == 'Linux'
+        run: sudo apt-get install -y libgit2-dev
+
+      - name: Setup required dotnet versions
+        uses: actions/setup-dotnet@v4.0.1
+        with:
+          dotnet-version: |
+            2.1.818
+            3.1.x
+            5.0.x
+            6.0.x
+            7.0.x
+            8.0.x
 
       - name: Build project
-        uses: cake-build/cake-action@v1
+        uses: cake-build/cake-action@v2.0.0
         with:
           script-path: recipe.cake
           target: CI
           verbosity: Normal
-          cake-version: 0.38.5
-          cake-bootstrap: true
+          cake-version: tool-manifest
+          cake-bootstrap: explicit
 
       - name: Upload Issues-Report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           if-no-files-found: warn
-          name: issues
+          name: ${{ matrix.os }} Issues
           path: BuildArtifacts/report.html
 
       - name: Upload Packages
-        uses: actions/upload-artifact@v2
+        if: runner.os == 'Windows'
+        uses: actions/upload-artifact@v4
         with:
           if-no-files-found: warn
           name: package

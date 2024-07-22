@@ -11,14 +11,14 @@ jobs:
 
     steps:
       - name: Checkout the requested branch
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v4
       - name: Fetch all tags and branches
         run: git fetch --prune --unshallow
       - name: Cache Tools
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v4
         with:
           path: tools
-          key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake') }}
+          key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake', '.config/dotnet-tools.json') }}
       - name: Set up git version
         if: ${{ !contains(github.ref, '/hotfix/') && !contains(github.ref, '/release/') }}
         uses: gittools/actions/gitversion/setup@v0.9.9
@@ -38,10 +38,10 @@ jobs:
           branch: "release/${{ steps.gitversion.outputs.majorMinorPatch }}"
           github_token: ${{ secrets.GH_TOKEN }}
       - name: Drafting Release Notes
-        uses: cake-build/cake-action@v1
+        uses: cake-build/cake-action@@v2.0.0
         with:
           script-path: recipe.cake
           target: releasenotes
-          verbosity: Diagnostic
-          cake-version: 0.38.5
+          verbosity: Normal
+          cake-version: tool-manifest
           cake-bootstrap: true
