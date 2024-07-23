@@ -75,7 +75,6 @@ jobs:
           target: CI
           verbosity: Normal
           cake-version: tool-manifest
-          cake-bootstrap: explicit
 
       - name: Upload Issues-Report
         uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
