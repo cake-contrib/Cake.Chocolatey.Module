@@ -5,7 +5,11 @@
     <CodeAnalysisRuleSet>$(ProjectDir)../Cake.Chocolatey.Module.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
-
+  <ItemGroup>
+    <AdditionalFiles Include="$(ProjectDir)../stylecop.json" Link="stylecop.json" />
+    <None Include="$(ProjectDir)../.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+  
   <PropertyGroup>
     <!-- Properties related to packaging -->
     <Authors>Gary Ewan Park</Authors>
@@ -24,6 +28,10 @@ For details see $(PackageProjectUrl)/releases</PackageReleaseNotes>
   <ItemGroup>
     <PackageReference Include="Cake.Core" Version="$(CakeVersion)" PrivateAssets="All" />
     <PackageReference Include="CakeContrib.Guidelines" Version="1.5.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
