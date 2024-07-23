@@ -30,30 +30,10 @@ namespace Cake.Chocolatey.Module
         /// <param name="config">the configuration.</param>
         public ChocolateyPackageInstaller(ICakeEnvironment environment, IProcessRunner processRunner, ICakeLog log, IChocolateyContentResolver contentResolver, ICakeConfiguration config)
         {
-            if (environment == null)
-            {
-                throw new ArgumentNullException(nameof(environment));
-            }
-
-            if (processRunner == null)
-            {
-                throw new ArgumentNullException(nameof(processRunner));
-            }
-
-            if (log == null)
-            {
-                throw new ArgumentNullException(nameof(log));
-            }
-
-            if (contentResolver == null)
-            {
-                throw new ArgumentNullException(nameof(contentResolver));
-            }
-
-            _environment = environment;
-            _processRunner = processRunner;
-            _log = log;
-            _contentResolver = contentResolver;
+            _environment = environment ?? throw new ArgumentNullException(nameof(environment));
+            _processRunner = processRunner ?? throw new ArgumentNullException(nameof(processRunner));
+            _log = log ?? throw new ArgumentNullException(nameof(log));
+            _contentResolver = contentResolver ?? throw new ArgumentNullException(nameof(contentResolver));
             _config = config;
         }
 

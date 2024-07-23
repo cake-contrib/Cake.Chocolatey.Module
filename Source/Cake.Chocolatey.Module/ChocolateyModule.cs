@@ -2,12 +2,15 @@
 using Cake.Core.Composition;
 using Cake.Core.Packaging;
 
+using JetBrains.Annotations;
+
 namespace Cake.Chocolatey.Module
 {
     /// <summary>
     /// The module responsible for registering
     /// default types in the Cake.Chocolatey.Module assembly.
     /// </summary>
+    [PublicAPI]
     public sealed class ChocolateyModule : ICakeModule
     {
         /// <summary>
