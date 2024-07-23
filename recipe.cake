@@ -10,7 +10,8 @@ BuildParameters.SetParameters(context: Context,
                             repositoryName: "Cake.Chocolatey.Module",
                             shouldRunCodecov: false,
                             shouldPostToGitter: false,
-                            appVeyorAccountName: "cakecontrib");
+                            appVeyorAccountName: "cakecontrib",
+                            shouldRunDotNetCorePack: true);
 
 BuildParameters.PrintParameters(Context);
 
