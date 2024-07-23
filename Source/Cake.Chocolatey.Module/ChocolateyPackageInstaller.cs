@@ -27,7 +27,7 @@ namespace Cake.Chocolatey.Module
         /// <param name="processRunner">The process runner.</param>
         /// <param name="log">The log.</param>
         /// <param name="contentResolver">The Chocolatey Package Content Resolver.</param>
-        /// <param name="config">the configuration</param>
+        /// <param name="config">the configuration.</param>
         public ChocolateyPackageInstaller(ICakeEnvironment environment, IProcessRunner processRunner, ICakeLog log, IChocolateyContentResolver contentResolver, ICakeConfiguration config)
         {
             if (environment == null)
