@@ -44,4 +44,3 @@ jobs:
           target: releasenotes
           verbosity: Normal
           cake-version: tool-manifest
-          cake-bootstrap: true

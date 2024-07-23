@@ -1,4 +1,4 @@
-#load nuget:?package=Cake.Recipe&version=2.2.1
+#load nuget:?package=Cake.Recipe&version=3.1.1
 
 Environment.SetVariableNames();
 
@@ -24,3 +24,4 @@ ToolSettings.SetToolSettings(context: Context,
                             testCoverageExcludeByFile: "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs");
 
 Build.RunDotNetCore();
+
