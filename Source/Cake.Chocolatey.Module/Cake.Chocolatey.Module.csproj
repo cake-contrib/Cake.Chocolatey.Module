@@ -14,7 +14,7 @@
 This version was build for Cake v$(CakeVersion)</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/cake-contrib/Cake.Chocolatey.Module</PackageProjectUrl>
-    <PackageTags>Cake;Script;Build;Chocolatey;Module</PackageTags>
+    <PackageTags>cake;script;build;chocolatey;module;cake-build;cake-module</PackageTags>
     <RepositoryUrl>$(PackageProjectUrl).git</RepositoryUrl>
     <PackageReleaseNotes>This version was build for Cake v$(CakeVersion).
 For details see $(PackageProjectUrl)/releases</PackageReleaseNotes>
