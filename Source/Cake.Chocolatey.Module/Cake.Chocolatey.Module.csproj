@@ -2,13 +2,9 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <CodeAnalysisRuleSet>$(ProjectDir)../Cake.Chocolatey.Module.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <PropertyGroup>
-    <CodeAnalysisRuleSet>Cake.Chocolatey.Module.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <DefineConstants>TRACE;DEBUG;NETSTANDARD</DefineConstants>
-  </PropertyGroup>
+
 
   <PropertyGroup>
     <!-- Properties related to packaging -->
