@@ -39,6 +39,20 @@ var searchModule = function() {
     a(
         {
             id:0,
+            title:"IChocolateyContentResolver",
+            content:"IChocolateyContentResolver",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/IChocolateyContentResolver',
+            title:"IChocolateyContentResolver",
+            description:""
+        }
+    );
+    a(
+        {
+            id:1,
             title:"ChocolateyModule",
             content:"ChocolateyModule",
             description:'',
@@ -52,7 +66,7 @@ var searchModule = function() {
     );
     a(
         {
-            id:1,
+            id:2,
             title:"ChocolateyPackageInstaller",
             content:"ChocolateyPackageInstaller",
             description:'',
@@ -61,20 +75,6 @@ var searchModule = function() {
         {
             url:'/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyPackageInstaller',
             title:"ChocolateyPackageInstaller",
-            description:""
-        }
-    );
-    a(
-        {
-            id:2,
-            title:"IChocolateyContentResolver",
-            content:"IChocolateyContentResolver",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/IChocolateyContentResolver',
-            title:"IChocolateyContentResolver",
             description:""
         }
     );
