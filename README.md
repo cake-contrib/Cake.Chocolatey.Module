@@ -1,6 +1,6 @@
 # Cake.Chocolatey.Module
 
-Cake.Chocolatey.Module is a Module for Cake, which extends it with a new IPackageInstaller for installing tools using the Chocolatey Application Package Manager
+Cake.Chocolatey.Module is a Module for Cake, which extends it with a new IPackageInstaller for installing tools using the Chocolatey Application Package Manager.
 
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://cake-contrib.mit-license.org)
 
@@ -25,11 +25,11 @@ Cake.Chocolatey.Module is a Module for Cake, which extends it with a new IPackag
 
 - [Documentation](https://cake-contrib.github.io/Cake.Chocolatey.Module)
 
-## Chat Room
+## Discussion
 
-Come join in the conversation about Cake.Chocolatey.Module in our Gitter Chat Room
+If you have questions, search for an existing one, or create a new discussion on the Cake GitHub repository, using the `extension-q-a` category.
 
-[![Join the chat at https://gitter.im/cake-contrib/Lobby](https://badges.gitter.im/cake-contrib/Lobby.svg)](https://gitter.im/cake-contrib/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join in the discussion on the Cake repository](https://img.shields.io/badge/GitHub-Discussions-green?logo=github)](https://github.com/cake-build/cake/discussions)
 
 ## Build
 

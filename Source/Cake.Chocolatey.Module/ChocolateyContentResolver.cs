@@ -5,11 +5,14 @@ using Cake.Core;
 using Cake.Core.IO;
 using Cake.Core.Packaging;
 
+using JetBrains.Annotations;
+
 namespace Cake.Chocolatey.Module
 {
     /// <summary>
     /// Locates and lists contents of Chocolatey Packages.
     /// </summary>
+    [UsedImplicitly]
     public class ChocolateyContentResolver : IChocolateyContentResolver
     {
         private readonly IFileSystem _fileSystem;

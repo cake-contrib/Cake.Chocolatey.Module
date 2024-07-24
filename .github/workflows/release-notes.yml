@@ -1,0 +1,46 @@
+name: Draft Release Notes
+
+on:
+  workflow_dispatch:
+
+jobs:
+  draft-stable:
+    env:
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the requested branch
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - name: Fetch all tags and branches
+        run: git fetch --prune --unshallow
+      - name: Cache Tools
+        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4
+        with:
+          path: tools
+          key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake', '.config/dotnet-tools.json') }}
+      - name: Set up git version
+        if: ${{ !contains(github.ref, '/hotfix/') && !contains(github.ref, '/release/') }}
+        uses: gittools/actions/gitversion/setup@d2063e59b58a89fa78aa5efa39f6efb8ffea7308 # v2.0.1
+        with:
+          versionSpec: "5.x"
+      - name: Run git version
+        if: ${{ !contains(github.ref, '/hotfix/') && !contains(github.ref, '/release/') }}
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@d2063e59b58a89fa78aa5efa39f6efb8ffea7308 # v2.0.1
+      - name: Create release branch ${{ github.event.inputs.version }}
+        if: ${{ steps.gitversion.outputs.majorMinorPatch }}
+        run: git switch -c release/${{ steps.gitversion.outputs.majorMinorPatch }}
+      - name: Push new branch
+        if: ${{ steps.gitversion.outputs.majorMinorPatch }}
+        uses: ad-m/github-push-action@d91a481090679876dfc4178fef17f286781251df # v0.8.0
+        with:
+          branch: "release/${{ steps.gitversion.outputs.majorMinorPatch }}"
+          github_token: ${{ secrets.GH_TOKEN }}
+      - name: Drafting Release Notes
+        uses: cake-build/cake-action@1223b6fa067ad192159f43b50cd4f953679b0934 # v2.0.0
+        with:
+          script-path: recipe.cake
+          target: releasenotes
+          verbosity: Normal
+          cake-version: tool-manifest

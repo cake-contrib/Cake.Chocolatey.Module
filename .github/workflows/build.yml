@@ -1,0 +1,92 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - "feature/**"
+      - "release/**"
+      - "hotfix/**"
+    tags:
+      - "*"
+    paths-ignore:
+      - "README.md"
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-2022, ubuntu-22.04, macos-12]
+
+    env:
+      AZURE_PASSWORD: ${{ secrets.AZURE_PASSWORD }}
+      AZURE_SOURCE: ${{ secrets.AZURE_SOURCE }}
+      AZURE_USER: ${{ secrets.AZURE_USER }}
+      GITHUB_PAT: ${{ secrets.GH_TOKEN }}
+      GPR_PASSWORD: ${{ secrets.GPR_PASSWORD }}
+      GPR_SOURCE: ${{ secrets.GPR_SOURCE }}
+      GPR_USER: ${{ secrets.GPR_USER }}
+      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      NUGET_SOURCE: "https://api.nuget.org/v3/index.json"
+      TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+      TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+      TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
+      TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+      WYAM_ACCESS_TOKEN: ${{ secrets.WYAM_ACCESS_TOKEN }}
+      WYAM_DEPLOY_BRANCH: "gh-pages"
+      WYAM_DEPLOY_REMOTE: ${{ github.event.repository.html_url }}
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+
+      - name: Fetch all tags and branches
+        run: git fetch --prune --unshallow
+
+      - name: Cache Tools
+        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4
+        with:
+          path: tools
+          key: ${{ runner.os }}-tools-${{ hashFiles('recipe.cake', '.config/dotnet-tools.json') }}
+
+      # install libgit2-dev on ubuntu, so libgit2sharp works
+      - name: Install libgit-dev
+        if: runner.os == 'Linux'
+        run: sudo apt-get install -y libgit2-dev
+
+      - name: Setup required dotnet versions
+        uses: actions/setup-dotnet@6bd8b7f7774af54e05809fcc5431931b3eb1ddee # v4.0.1
+        with:
+          dotnet-version: |
+            2.1.818
+            3.1.x
+            5.0.x
+            6.0.x
+            7.0.x
+            8.0.x
+
+      - name: Build project
+        uses: cake-build/cake-action@1223b6fa067ad192159f43b50cd4f953679b0934 # v2.0.0
+        with:
+          script-path: recipe.cake
+          target: CI
+          verbosity: Normal
+          cake-version: tool-manifest
+
+      - name: Upload Issues-Report
+        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
+        with:
+          if-no-files-found: warn
+          name: ${{ matrix.os }} Issues
+          path: BuildArtifacts/report.html
+
+      - name: Upload Packages
+        if: runner.os == 'Windows'
+        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
+        with:
+          if-no-files-found: warn
+          name: package
+          path: BuildArtifacts/Packages/**/*
