@@ -9,9 +9,12 @@ BuildParameters.SetParameters(context: Context,
                             repositoryOwner: "cake-contrib",
                             repositoryName: "Cake.Chocolatey.Module",
                             shouldRunCodecov: false,
+                            shouldRunCoveralls: false,
                             shouldPostToGitter: false,
                             appVeyorAccountName: "cakecontrib",
-                            shouldRunDotNetCorePack: true);
+                            shouldRunDotNetCorePack: true,
+                            preferredBuildProviderType: BuildProviderType.GitHubActions,
+                            preferredBuildAgentOperatingSystem: PlatformFamily.Windows);
 
 BuildParameters.PrintParameters(Context);
 
