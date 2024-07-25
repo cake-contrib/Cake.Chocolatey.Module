@@ -39,20 +39,6 @@ var searchModule = function() {
     a(
         {
             id:0,
-            title:"ChocolateyContentResolver",
-            content:"ChocolateyContentResolver",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyContentResolver',
-            title:"ChocolateyContentResolver",
-            description:""
-        }
-    );
-    a(
-        {
-            id:1,
             title:"ChocolateyPackageInstaller",
             content:"ChocolateyPackageInstaller",
             description:'',
@@ -61,6 +47,20 @@ var searchModule = function() {
         {
             url:'/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyPackageInstaller',
             title:"ChocolateyPackageInstaller",
+            description:""
+        }
+    );
+    a(
+        {
+            id:1,
+            title:"IChocolateyContentResolver",
+            content:"IChocolateyContentResolver",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/IChocolateyContentResolver',
+            title:"IChocolateyContentResolver",
             description:""
         }
     );
@@ -81,14 +81,14 @@ var searchModule = function() {
     a(
         {
             id:3,
-            title:"IChocolateyContentResolver",
-            content:"IChocolateyContentResolver",
+            title:"ChocolateyContentResolver",
+            content:"ChocolateyContentResolver",
             description:'',
             tags:''
         },
         {
-            url:'/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/IChocolateyContentResolver',
-            title:"IChocolateyContentResolver",
+            url:'/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyContentResolver',
+            title:"ChocolateyContentResolver",
             description:""
         }
     );
