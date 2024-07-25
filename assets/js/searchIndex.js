@@ -39,34 +39,6 @@ var searchModule = function() {
     a(
         {
             id:0,
-            title:"ChocolateyPackageInstaller",
-            content:"ChocolateyPackageInstaller",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyPackageInstaller',
-            title:"ChocolateyPackageInstaller",
-            description:""
-        }
-    );
-    a(
-        {
-            id:1,
-            title:"IChocolateyContentResolver",
-            content:"IChocolateyContentResolver",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/IChocolateyContentResolver',
-            title:"IChocolateyContentResolver",
-            description:""
-        }
-    );
-    a(
-        {
-            id:2,
             title:"ChocolateyModule",
             content:"ChocolateyModule",
             description:'',
@@ -80,7 +52,21 @@ var searchModule = function() {
     );
     a(
         {
-            id:3,
+            id:1,
+            title:"ChocolateyPackageInstaller",
+            content:"ChocolateyPackageInstaller",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyPackageInstaller',
+            title:"ChocolateyPackageInstaller",
+            description:""
+        }
+    );
+    a(
+        {
+            id:2,
             title:"ChocolateyContentResolver",
             content:"ChocolateyContentResolver",
             description:'',
@@ -89,6 +75,20 @@ var searchModule = function() {
         {
             url:'/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyContentResolver',
             title:"ChocolateyContentResolver",
+            description:""
+        }
+    );
+    a(
+        {
+            id:3,
+            title:"IChocolateyContentResolver",
+            content:"IChocolateyContentResolver",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/IChocolateyContentResolver',
+            title:"IChocolateyContentResolver",
             description:""
         }
     );
