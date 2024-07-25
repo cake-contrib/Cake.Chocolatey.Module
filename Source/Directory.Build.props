@@ -1,5 +1,5 @@
 <Project>
     <PropertyGroup>
-        <CakeVersion>2.0.0</CakeVersion>
+        <CakeVersion>3.0.0</CakeVersion>
     </PropertyGroup>
 </Project>
