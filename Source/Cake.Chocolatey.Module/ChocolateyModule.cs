@@ -1,8 +1,12 @@
 ﻿using System;
+
+using Cake.Core.Annotations;
 using Cake.Core.Composition;
 using Cake.Core.Packaging;
 
 using JetBrains.Annotations;
+
+[assembly: CakeModule(typeof(Cake.Chocolatey.Module.ChocolateyModule))]
 
 namespace Cake.Chocolatey.Module
 {
