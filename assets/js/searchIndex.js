@@ -39,14 +39,14 @@ var searchModule = function() {
     a(
         {
             id:0,
-            title:"ChocolateyModule",
-            content:"ChocolateyModule",
+            title:"ChocolateyContentResolver",
+            content:"ChocolateyContentResolver",
             description:'',
             tags:''
         },
         {
-            url:'/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyModule',
-            title:"ChocolateyModule",
+            url:'/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyContentResolver',
+            title:"ChocolateyContentResolver",
             description:""
         }
     );
@@ -67,14 +67,14 @@ var searchModule = function() {
     a(
         {
             id:2,
-            title:"ChocolateyContentResolver",
-            content:"ChocolateyContentResolver",
+            title:"ChocolateyModule",
+            content:"ChocolateyModule",
             description:'',
             tags:''
         },
         {
-            url:'/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyContentResolver',
-            title:"ChocolateyContentResolver",
+            url:'/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyModule',
+            title:"ChocolateyModule",
             description:""
         }
     );
