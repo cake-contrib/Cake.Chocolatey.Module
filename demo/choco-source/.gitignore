@@ -1,0 +1,3 @@
+*.exe
+!*.nupkg
+// do not exlude the nupkg - we need it for testing and don't want to have to rebuild it every time
