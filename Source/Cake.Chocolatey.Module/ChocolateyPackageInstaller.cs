@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Cake.Core;
 using Cake.Core.Configuration;
@@ -19,6 +20,7 @@ namespace Cake.Chocolatey.Module
         private readonly ICakeLog _log;
         private readonly IChocolateyContentResolver _contentResolver;
         private readonly ICakeConfiguration _config;
+        private readonly IFileSystem _fileSystem;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChocolateyPackageInstaller"/> class.
@@ -28,13 +30,15 @@ namespace Cake.Chocolatey.Module
         /// <param name="log">The log.</param>
         /// <param name="contentResolver">The Chocolatey Package Content Resolver.</param>
         /// <param name="config">the configuration.</param>
-        public ChocolateyPackageInstaller(ICakeEnvironment environment, IProcessRunner processRunner, ICakeLog log, IChocolateyContentResolver contentResolver, ICakeConfiguration config)
+        /// <param name="fileSystem">the fileSystem.</param>
+        public ChocolateyPackageInstaller(ICakeEnvironment environment, IProcessRunner processRunner, ICakeLog log, IChocolateyContentResolver contentResolver, ICakeConfiguration config, IFileSystem fileSystem)
         {
             _environment = environment ?? throw new ArgumentNullException(nameof(environment));
             _processRunner = processRunner ?? throw new ArgumentNullException(nameof(processRunner));
             _log = log ?? throw new ArgumentNullException(nameof(log));
             _contentResolver = contentResolver ?? throw new ArgumentNullException(nameof(contentResolver));
             _config = config;
+            _fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem));
         }
 
         /// <summary>
@@ -73,6 +77,23 @@ namespace Cake.Chocolatey.Module
             }
 
             path = path.MakeAbsolute(_environment);
+
+            if (!_environment.Platform.IsWindows())
+            {
+                // choco runs only on windows!
+                _log.Warning("Unable to install {0}, since the choco-scheme can only install on Windows. Ensure {0} exists on your system!", package.Package);
+
+                // we need to return something, or else the installation counts as "failed".
+                var noInstallFilePath = path.CombineWithFilePath("no-choco-install.txt");
+                var noInstallFile = _fileSystem.GetFile(noInstallFilePath);
+                using (var stream = noInstallFile.Open(FileMode.Append))
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine("{0} not installed, since we're not running on windows.", package.Package);
+                }
+
+                return new[] { noInstallFile };
+            }
 
             // Install the package.
             _log.Debug("Installing Chocolatey package {0}...", package.Package);

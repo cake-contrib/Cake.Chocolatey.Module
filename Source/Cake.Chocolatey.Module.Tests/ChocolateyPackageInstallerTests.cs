@@ -1,13 +1,18 @@
-﻿using Cake.Core.Diagnostics;
-using Cake.Core.IO;
-using Cake.Core.Packaging;
+﻿using Cake.Core.Packaging;
 using NSubstitute;
 using System;
-using System.Collections.Generic;
+
+using Cake.Testing.Xunit;
+
 using Xunit;
 
 namespace Cake.Chocolatey.Module.Tests
 {
+    /*
+     * Most of the WindowsFactAttributes should be "normal" FactAttributes
+     * once https://github.com/cake-build/cake/issues/4322 is resolved.
+     */
+
     /// <summary>
     /// ChocolateyPackageInstaller unit tests
     /// </summary>
@@ -15,11 +20,11 @@ namespace Cake.Chocolatey.Module.Tests
     {
         public sealed class TheConstructor
         {
-            [Fact]
+            [WindowsFact]
             public void Should_Throw_If_Environment_Is_Null()
             {
                 // Given
-                var fixture = new ChocolateyPackageInstallerFixture();
+                var fixture = ChocolateyPackageInstallerFixture.Windows;
                 fixture.Environment = null;
 
                 // When
@@ -30,11 +35,11 @@ namespace Cake.Chocolatey.Module.Tests
                 Assert.Equal("environment", ((ArgumentNullException)result).ParamName);
             }
 
-            [Fact]
+            [WindowsFact]
             public void Should_Throw_If_Process_Runner_Is_Null()
             {
                 // Given
-                var fixture = new ChocolateyPackageInstallerFixture();
+                var fixture = ChocolateyPackageInstallerFixture.Windows;
                 fixture.ProcessRunner = null;
 
                 // When
@@ -45,11 +50,11 @@ namespace Cake.Chocolatey.Module.Tests
                 Assert.Equal("processRunner", ((ArgumentNullException)result).ParamName);
             }
 
-            [Fact]
+            [WindowsFact]
             public void Should_Throw_If_Content_Resolver_Is_Null()
             {
                 // Given
-                var fixture = new ChocolateyPackageInstallerFixture();
+                var fixture = ChocolateyPackageInstallerFixture.Windows;
                 fixture.ContentResolver = null;
 
                 // When
@@ -60,11 +65,11 @@ namespace Cake.Chocolatey.Module.Tests
                 Assert.Equal("contentResolver", ((ArgumentNullException)result).ParamName);
             }
 
-            [Fact]
+            [WindowsFact]
             public void Should_Throw_If_Log_Is_Null()
             {
                 // Given
-                var fixture = new ChocolateyPackageInstallerFixture();
+                var fixture = ChocolateyPackageInstallerFixture.Windows;
                 fixture.Log = null;
 
                 // When
@@ -80,11 +85,11 @@ namespace Cake.Chocolatey.Module.Tests
         {
             private string CHOCOLATEY_CONFIGKEY = "Chocolatey_Source";
 
-            [Fact]
+            [WindowsFact]
             public void Should_Throw_If_URI_Is_Null()
             {
                 // Given
-                var fixture = new ChocolateyPackageInstallerFixture();
+                var fixture = ChocolateyPackageInstallerFixture.Windows;
                 fixture.Package = null;
 
                 // When
@@ -95,11 +100,11 @@ namespace Cake.Chocolatey.Module.Tests
                 Assert.Equal("package", ((ArgumentNullException)result).ParamName);
             }
 
-            [Fact]
+            [WindowsFact]
             public void Should_Be_Able_To_Install_If_Scheme_Is_Correct()
             {
                 // Given
-                var fixture = new ChocolateyPackageInstallerFixture();
+                var fixture = ChocolateyPackageInstallerFixture.Windows;
                 fixture.Package = new PackageReference("choco:?package=windristat");
 
                 // When
@@ -109,11 +114,11 @@ namespace Cake.Chocolatey.Module.Tests
                 Assert.True(result);
             }
 
-            [Fact]
+            [WindowsFact]
             public void Should_Not_Be_Able_To_Install_If_Scheme_Is_Incorrect()
             {
                 // Given
-                var fixture = new ChocolateyPackageInstallerFixture();
+                var fixture = ChocolateyPackageInstallerFixture.Windows;
                 fixture.Package = new PackageReference("homebrew:?package=windirstat");
 
                 // When
@@ -123,10 +128,10 @@ namespace Cake.Chocolatey.Module.Tests
                 Assert.False(result);
             }
 
-            [Fact]
+            [WindowsFact]
             public void Should_Ignore_Custom_Source_If_AbsoluteUri_Is_Used()
             {
-                var fixture = new ChocolateyPackageInstallerFixture();
+                var fixture = ChocolateyPackageInstallerFixture.Windows;
                 fixture.Package = new PackageReference("choco:http://absolute/?package=windirstat");
 
                 // When
@@ -137,10 +142,10 @@ namespace Cake.Chocolatey.Module.Tests
                 fixture.Config.DidNotReceive().GetValue(CHOCOLATEY_CONFIGKEY);
             }
 
-            [Fact]
+            [WindowsFact]
             public void Should_Use_Custom_Source_If_RelativeUri_Is_Used()
             {
-                var fixture = new ChocolateyPackageInstallerFixture();
+                var fixture = ChocolateyPackageInstallerFixture.Windows;
                 fixture.Package = new PackageReference("choco:?package=windirstat");
 
                 // When
@@ -154,11 +159,11 @@ namespace Cake.Chocolatey.Module.Tests
 
         public sealed class TheInstallMethod
         {
-            [Fact]
+            [WindowsFact]
             public void Should_Throw_If_Uri_Is_Null()
             {
                 // Given
-                var fixture = new ChocolateyPackageInstallerFixture();
+                var fixture = ChocolateyPackageInstallerFixture.Windows;
                 fixture.Package = null;
 
                 // When
@@ -169,11 +174,11 @@ namespace Cake.Chocolatey.Module.Tests
                 Assert.Equal("package", ((ArgumentNullException)result).ParamName);
             }
 
-            [Fact]
+            [WindowsFact]
             public void Should_Throw_If_Install_Path_Is_Null()
             {
                 // Given
-                var fixture = new ChocolateyPackageInstallerFixture();
+                var fixture = ChocolateyPackageInstallerFixture.Windows;
                 fixture.InstallPath = null;
 
                 // When
@@ -182,6 +187,19 @@ namespace Cake.Chocolatey.Module.Tests
                 // Then
                 Assert.IsType<ArgumentNullException>(result);
                 Assert.Equal("path", ((ArgumentNullException)result).ParamName);
+            }
+
+            [Fact]
+            public void On_Non_Windows_Install_Does_Not_Fail()
+            {
+                var fixture = ChocolateyPackageInstallerFixture.Unix;
+                fixture.Package = new PackageReference("choco:?package=windirstat");
+
+                // When
+                var result = fixture.Install();
+
+                // Then
+                Assert.Single(result);
             }
         }
     }
