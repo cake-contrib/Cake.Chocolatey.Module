@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>cake-demo</id>
+    <version>0.1.0</version>
+    <owners>nils-a</owners>
+    <title>cake-demo (Portable)</title>
+    <authors>Nils Andresen</authors>
+    <projectUrl>https://github.com/cake-contrib/Cake.Chocolatey.Module</projectUrl>
+    <copyright>2024 - present Cake Contributors</copyright>
+    <tags>cake choco demo not-a-real-package do-not-use</tags>
+    <summary>This is only a demo project to be used in the Cake.Chocolatey.Module demo</summary>
+    <description>This is only a demo project to be used in the Cake.Chocolatey.Module demo</description>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
