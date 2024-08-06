@@ -6,7 +6,7 @@ Title: Setup
 
 Due to the fact that Cake Modules are extending and altering the internals of Cake, the module assembly needs to be loaded prior to the main Cake execution. As a result, the only place that this can really happen is during the bootstrapping phase. If you use the latest version of the default bootstrapper this process is made very easy. All you need to do is the following.
 
-1. Add the following line in you're cake.recipe:
+1. Add the following line in your `build.cake`:
 
    ```cs
    #module nuget:?package=Cake.Chocolatey.Module&version=<version>

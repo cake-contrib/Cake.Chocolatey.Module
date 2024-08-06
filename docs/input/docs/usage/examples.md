@@ -6,7 +6,7 @@ Title: Examples
 **Administrative Privileges**
 
 Keep in mind, that installing Chocolatey packages likely requires administrator privileges.
-See [the chocolatey setup](https://docs.chocolatey.org/en-us/choco/setup/#non-administrative-install) for more information.
+See [the Chocolatey CLI setup](https://docs.chocolatey.org/en-us/choco/setup/#non-administrative-install) for more information.
 :::
 
 Installing a tool using the Chocolatey Cake Module is as simple as:
