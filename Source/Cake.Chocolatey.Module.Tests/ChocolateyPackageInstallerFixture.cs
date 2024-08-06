@@ -26,12 +26,16 @@ namespace Cake.Chocolatey.Module.Tests
 
         public ICakeConfiguration Config { get; set; }
 
+        internal static ChocolateyPackageInstallerFixture Windows => new(FakeEnvironment.CreateWindowsEnvironment());
+
+        internal static ChocolateyPackageInstallerFixture Unix => new(FakeEnvironment.CreateUnixEnvironment());
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ChocolateyPackageInstallerFixture"/> class.
         /// </summary>
-        internal ChocolateyPackageInstallerFixture()
+        private ChocolateyPackageInstallerFixture(FakeEnvironment fakeEnvironment)
         {
-            Environment = FakeEnvironment.CreateUnixEnvironment();
+            Environment =  fakeEnvironment;
             FileSystem = new FakeFileSystem(Environment);
             ProcessRunner = Substitute.For<IProcessRunner>();
             ContentResolver = Substitute.For<IChocolateyContentResolver>();
@@ -39,7 +43,18 @@ namespace Cake.Chocolatey.Module.Tests
             Config = Substitute.For<ICakeConfiguration>();
             Package = new PackageReference("choco:?package=windirstat");
             PackageType = PackageType.Addin;
-            InstallPath = new DirectoryPath("./chocolatey");
+            InstallPath = Environment.WorkingDirectory.Combine("chocolatey");
+            EnsureDirExists(InstallPath);
+        }
+
+        private void EnsureDirExists(DirectoryPath path)
+        {
+            var d = FileSystem.GetDirectory(path.MakeAbsolute(Environment));
+
+            if (!d.Exists)
+            {
+                d.Create();
+            }
         }
 
         /// <summary>
@@ -48,7 +63,7 @@ namespace Cake.Chocolatey.Module.Tests
         /// <returns>The chocolatey package installer.</returns>
         internal ChocolateyPackageInstaller CreateInstaller()
         {
-            return new ChocolateyPackageInstaller(Environment, ProcessRunner, Log, ContentResolver, Config);
+            return new ChocolateyPackageInstaller(Environment, ProcessRunner, Log, ContentResolver, Config, FileSystem);
         }
 
         /// <summary>ChocolateyPackageInstallerFixture
