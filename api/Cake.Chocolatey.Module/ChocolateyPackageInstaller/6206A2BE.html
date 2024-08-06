@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Cake.Chocolatey.Module/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Cake.Chocolatey.Module/assets/img/favicon.ico" type="image/x-icon">
-        <title>Cake.Chocolatey.Module - API - ChocolateyPackageInstaller.ChocolateyPackageInstaller(ICakeEnvironment, IProcessRunner, ICakeLog, IChocolateyContentResolver, ICakeConfiguration) Constructor</title>
+        <title>Cake.Chocolatey.Module - API - ChocolateyPackageInstaller.ChocolateyPackageInstaller(ICakeEnvironment, IProcessRunner, ICakeLog, IChocolateyContentResolver, ICakeConfiguration, IFileSystem) Constructor</title>
         <link href="/Cake.Chocolatey.Module/assets/css/highlight.css" rel="stylesheet">
         <link href="/Cake.Chocolatey.Module/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
         <link href="/Cake.Chocolatey.Module/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
@@ -139,7 +139,7 @@
 		<li><a href="/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyPackageInstaller">Chocolatey<wbr>Package<wbr>Installer</a></li>
 		<li role="separator" class="divider"></li>
 			<li class="header">Constructors</li>
-				<li class="selected"><a href="/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyPackageInstaller/3833B9E1">Chocolatey<wbr>Package<wbr>Installer<wbr>(ICakeEnvironment, <wbr>IProcessRunner, <wbr>ICakeLog, <wbr>I<wbr>Chocolatey<wbr>Content<wbr>Resolver, <wbr>ICakeConfiguration)<wbr></a></li>
+				<li class="selected"><a href="/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyPackageInstaller/6206A2BE">Chocolatey<wbr>Package<wbr>Installer<wbr>(ICakeEnvironment, <wbr>IProcessRunner, <wbr>ICakeLog, <wbr>I<wbr>Chocolatey<wbr>Content<wbr>Resolver, <wbr>ICakeConfiguration, <wbr>IFileSystem)<wbr></a></li>
 			<li class="header">Method Members</li>
 				<li><a href="/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyPackageInstaller/54AF4990">CanInstall<wbr>(PackageReference, <wbr>PackageType)<wbr></a></li>
 				<li><a href="/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyPackageInstaller/D1F518E0">Install<wbr>(PackageReference, <wbr>PackageType, <wbr>DirectoryPath)<wbr></a></li>
@@ -158,7 +158,7 @@
 
 <section class="content-header">
 			<h3><a href="/Cake.Chocolatey.Module/api/Cake.Chocolatey.Module/ChocolateyPackageInstaller">Chocolatey<wbr>Package<wbr>Installer</a>.</h3>
-	<h1>Chocolatey<wbr>Package<wbr>Installer<wbr>(ICakeEnvironment, <wbr>IProcessRunner, <wbr>ICakeLog, <wbr>I<wbr>Chocolatey<wbr>Content<wbr>Resolver, <wbr>ICakeConfiguration)<wbr> <small>Constructor</small></h1>
+	<h1>Chocolatey<wbr>Package<wbr>Installer<wbr>(ICakeEnvironment, <wbr>IProcessRunner, <wbr>ICakeLog, <wbr>I<wbr>Chocolatey<wbr>Content<wbr>Resolver, <wbr>ICakeConfiguration, <wbr>IFileSystem)<wbr> <small>Constructor</small></h1>
 </section>
 <section class="content">
 	
@@ -183,7 +183,7 @@
 		</div>
 
 	<h1 id="Syntax">Syntax</h1>
-	<pre><code>public ChocolateyPackageInstaller(ICakeEnvironment environment, IProcessRunner processRunner, ICakeLog log, IChocolateyContentResolver contentResolver, ICakeConfiguration config)</code></pre>
+	<pre><code>public ChocolateyPackageInstaller(ICakeEnvironment environment, IProcessRunner processRunner, ICakeLog log, IChocolateyContentResolver contentResolver, ICakeConfiguration config, IFileSystem fileSystem)</code></pre>
 
 
 
@@ -224,6 +224,11 @@
 						<td>config</td>
 						<td>ICakeConfiguration</td>
 						<td>the configuration.</td>
+					</tr>
+					<tr>
+						<td>fileSystem</td>
+						<td>IFileSystem</td>
+						<td>the fileSystem.</td>
 					</tr>
 			</tbody></table>
 		</div>
