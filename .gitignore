@@ -338,9 +338,14 @@ healthchecksdb
 
 # Cake
 tools/**
-!tools/packages.config
 
 # Build Related
 BuildArtifacts/*
+
+# Wyam
+config.wyam.dll
+config.wyam.hash
+config.wyam.packages.xml
+
 
 .DS_Store
