@@ -1,4 +1,8 @@
-The folllowing URI parameters are supported by the Cake.Chocolatey.Module.
+---
+Title: Parameters
+---
+
+The following URI parameters are supported by the Cake.Chocolatey.Module.
 
 # Source
 
@@ -6,7 +10,7 @@ This is not a named parameter, but it is permitted as per the URI definition.  B
 
 ## Example
 
-```
+```cs
 #tool choco:https://www.myget.org/F/gep13/api/v2?package=gep13.gitConfig
 ```
 
@@ -16,7 +20,7 @@ This is the name of the Chocolatey package that you would like to install.  This
 
 ## Example
 
-```
+```cs
 #tool choco:?package=nodejs.install
 ```
 
@@ -26,7 +30,7 @@ The specific version of the application that is being installed.  If not provide
 
 ## Example
 
-```
+```cs
 #tool choco:?package=nodejs.install&version=7.7.3
 ```
 
@@ -36,6 +40,6 @@ This controls whether or not Chocolatey is allowed to install pre-release versio
 
 ## Example
 
-```
+```cs
 #tool choco:?package=nodejs.install&version=7.7.3&prerelease
 ```
