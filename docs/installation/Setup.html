@@ -1,21 +1,19 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-        <meta name="description" />
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Cake.Chocolatey.Module/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Cake.Chocolatey.Module/assets/img/favicon.ico" type="image/x-icon">
         <title>Cake.Chocolatey.Module - Setup</title>
         <link href="/Cake.Chocolatey.Module/assets/css/highlight.css" rel="stylesheet">
-        <link href="/Cake.Chocolatey.Module/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
-        <link href="/Cake.Chocolatey.Module/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
-        <link href="/Cake.Chocolatey.Module/assets/css/theme/theme.css" rel="stylesheet" />
+        <link href="/Cake.Chocolatey.Module/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/Cake.Chocolatey.Module/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/Cake.Chocolatey.Module/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/Cake.Chocolatey.Module/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/Cake.Chocolatey.Module/assets/css/override.css" rel="stylesheet" />
+        <link href="/Cake.Chocolatey.Module/assets/css/override.css" rel="stylesheet">
         <script src="/Cake.Chocolatey.Module/assets/js/jquery-2.2.3.min.js"></script>
         <script src="/Cake.Chocolatey.Module/assets/js/bootstrap.min.js"></script>        
         <script src="/Cake.Chocolatey.Module/assets/js/app.min.js"></script>         
@@ -74,7 +72,9 @@
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
         <div><p><a href="https://github.com/cake-contrib/Cake.Chocolatey.Module/tree/develop/docs/input/docs/installation/Setup.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"></div>
+    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#installation">Installation</a></p>
+<hr class="infobar-hidden">
+</div>
 
                 </section>
                 <section class="sidebar">    
@@ -118,22 +118,22 @@
 			<h1>Setup</h1>
 		</section>
 	<section class="content">
-		<p>Due to the fact that Cake Modules are extending and altering the internals of the Cake, the Module Assembly needs to be loaded prior to the main Cake execution.  As a result, the only place that this can really happen is during the bootstrapping phase.  If you use the <a href="https://github.com/cake-build/resources/commit/3d112812353d714dad142c41f170b949f4a2eb2f">latest version of the default bootstrapper</a> this process is made very easy.  All you need to do is the following.</p>
+		<h1 id="installation">Installation</h1>
+<p>Due to the fact that Cake Modules are extending and altering the internals of Cake, the module assembly needs to be loaded prior to the main Cake execution. As a result, the only place that this can really happen is during the bootstrapping phase. If you use the latest version of the default bootstrapper this process is made very easy. All you need to do is the following.</p>
 <ol>
-<li>Add a modules folder into your tools folder</li>
-<li>Add a packages.config file into the newly created modules folder</li>
-<li>Add the name and version of the Module that you want to use.  <strong>NOTE:</strong> At this point, the assumption is that you are hosting the Module on NuGet.org.  If this is not the case, then additional steps would be required.</li>
-<li>An example packages.config file is shown below:</li>
-</ol>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;packages&gt;
-	&lt;package id=&quot;Cake.Chocolatey.Module&quot; version=&quot;0.1.0&quot; /&gt;
-&lt;/packages&gt;
+<li><p>Add the following line in your <code>build.cake</code>:</p>
+<pre><code class="language-cs">#module nuget:?package=Cake.Chocolatey.Module&amp;version=&lt;version&gt;
 </code></pre>
-<ol start="5">
-<li>Run the build as normal.  During the Cake Execution, it will recognise the Module Assembly which as been restored into the <code>tools/modules</code> folder, and load it.</li>
+</li>
+<li><p>For Cake versions before <code>1.0.0</code>, run the build with argument <code>--bootstrap</code> (i.e. <code>./build.ps1 --bootstrap</code>).</p>
+<p>This will restore the module assembly into the <code>tools/Modules</code> folder</p>
+</li>
+<li><p>Run the build as normal. During Cake's execution, it will recognize the module assembly which has been restored into the <code>tools/Modules</code> folder, and load it.</p>
+</li>
 </ol>
-<p><strong>NOTE:</strong> Similar to the recommendation <a href="http://cakebuild.net/docs/tutorials/getting-started">here</a> regarding only checking in your packages.config and not the entire contents of the Cake tools folder, the same recommendation is applied here.  Only check-in the packages.config file in the modules folder, and not the entire contents.</p>
+<div class="alert alert-info"><p><strong>NOTE</strong></p>
+<p>These steps assume you are using the default package source repository (community feed). Custom feeds require additional steps.</p>
+</div>
 
 	</section>
                 
@@ -146,11 +146,69 @@
         </div>
         <div class="wrapper bottom-wrapper">
             <footer class="bottom-footer">
-                Generated by <a href="https://wyam.io">Wyam</a>
+                <p class="text-muted">
+    Copyright © <a href="http://github.com/cake-contrib" target="_blank">Cake Contributions</a> and <a href="https://github.com/cake-contrib/Cake.Chocolatey.Module/graphs/contributors" target="_blank">contributors</a>.
+    <br>
+    Website generated by <a href="https://github.com/Wyamio/Wyam" target="_blank">Wyam</a>
+</p>
             </footer>
         </div>
         <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
-        
+        <a class="github-button" href="https://github.com/cake-contrib/Cake.Chocolatey.Module" target="_blank">
+    <i class="fa fa-github"></i>
+    GitHub
+</a>
+<a class="discussion-button" href="https://github.com/cake-build/cake/discussions" target="_blank">
+    <i class="fa fa-github"></i>
+    Discussion
+</a>
+
+<script type="text/javascript" src="/Cake.Chocolatey.Module/assets/js/anchor.min.js"></script>
+<script type="text/javascript" src="/Cake.Chocolatey.Module/assets/js/clipboard.min.js"></script>
+<script type="text/javascript">
+    anchors.options.placement = 'left';
+    anchors.add('#content h1:not(.no-anchor), #content h2:not(.no-anchor), #content h3:not(.no-anchor), #content h4:not(.no-anchor)');
+
+    var snippets = document.querySelectorAll("pre > code");
+    [].forEach.call(snippets, function(snippet) {
+        snippet.insertAdjacentHTML("beforebegin", "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='/Cake.Chocolatey.Module/assets/images/clippy.svg' alt='Copy to clipboard'></button>");
+    });
+    var clipboardSnippets = new Clipboard('[data-clipboard-snippet]', {
+        target: function(trigger) {
+            return trigger.nextElementSibling;
+        }
+    });
+    clipboardSnippets.on('success', function(e) {
+        e.clearSelection();
+        showTooltip(e.trigger, "Copied!");
+    });
+    clipboardSnippets.on('error', function(e) {
+        showTooltip(e.trigger, fallbackMessage(e.action));
+    });
+    var btns = document.querySelectorAll('.btn-copy');
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener('mouseleave', function(e) {
+            e.currentTarget.setAttribute('class', 'btn-copy');
+            e.currentTarget.removeAttribute('aria-label');
+        });
+    }
+    function showTooltip(elem, msg) {
+        elem.setAttribute('class', 'btn-copy tooltipped tooltipped-s');
+        elem.setAttribute('aria-label', msg);
+    }
+    function fallbackMessage(action) {
+        var actionMsg = '';
+        var actionKey = (action === 'cut' ? 'X' : 'C');
+        if (/iPhone|iPad/i.test(navigator.userAgent)) {
+            actionMsg = 'No support :(';
+        } else if (/Mac/i.test(navigator.userAgent)) {
+            actionMsg = 'Press ⌘-' + actionKey + ' to ' + action;
+        } else {
+            actionMsg = 'Press Ctrl-' + actionKey + ' to ' + action;
+        }
+        return actionMsg;
+    }
+</script>
         <script>           
             // Close the sidebar if we select an anchor link
             $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
@@ -220,5 +278,5 @@
                 }, 500);
             });
         </script>
-    </body>
-</html>
+    
+</body></html>
