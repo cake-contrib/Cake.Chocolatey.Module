@@ -29,7 +29,7 @@ For details see $(PackageProjectUrl)/releases</PackageReleaseNotes>
 
   <ItemGroup>
     <PackageReference Include="Cake.Core" Version="$(CakeVersion)" PrivateAssets="All" />
-    <PackageReference Include="CakeContrib.Guidelines" Version="1.5.1">
+    <PackageReference Include="CakeContrib.Guidelines" Version="1.7.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
